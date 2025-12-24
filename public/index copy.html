@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Direct Line Web Chat FAB Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1>Direct Line Web Chat (FAB) – Theming Playground</h1>
+      <p>
+        This page demonstrates an embedded Bot Framework Web Chat experience that opens from a Floating Action Button.
+        Use this repo as a reference implementation for your web developers.
+      </p>
+
+      <section class="demo-card">
+        <h2>Try it</h2>
+        <ol>
+          <li>Click the chat button (bottom-right).</li>
+          <li>Adjust theme variables in <code>public/styles.css</code>.</li>
+          <li>Reload to see the new brand styling.</li>
+        </ol>
+      </section>
+    </main>
+
+    <!-- FAB -->
+    <button id="chat-fab" class="fab" type="button" aria-label="Open chat" aria-expanded="false">
+      <img
+        src="./assets/logo 640x640.png"
+        alt=""
+        class="fab-icon-img"
+        aria-hidden="true"
+      />
+      <span class="fab-label">Chat</span>
+    </button>
+
+
+    <!-- Panel -->
+    <aside id="chat-panel" class="panel" aria-hidden="true">
+      <header class="panel-header">
+        <div class="panel-title">
+          <div class="panel-avatar" aria-hidden="true">🤖</div>
+          <div>
+            <div class="panel-name">Support</div>
+            <div class="panel-subtitle">We typically reply fast</div>
+          </div>
+        </div>
+        <button id="chat-close" class="panel-close" type="button" aria-label="Close chat">✕</button>
+      </header>
+
+      <div id="webchat" class="panel-body" role="region" aria-label="Chat messages"></div>
+
+      <footer class="panel-footer">
+        <small>
+          Demo only. Don’t put secrets in the browser.
+        </small>
+      </footer>
+    </aside>
+
+    <!-- Optional: client config. Copy config.example.js to config.js and include it here if you want. -->
+    <!-- <script src="./config.js"></script> -->
+
+    <!-- Web Chat (Direct Line) - CDN -->
+    <script
+      crossorigin="anonymous"
+      src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"
+    ></script>
+
+    <!-- App -->
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

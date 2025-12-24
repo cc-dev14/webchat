@@ -1,0 +1,16 @@
+# Choose token mode:
+# - proxy: forwards to an existing token endpoint (recommended for quick demos)
+# - directline_secret: server creates token from Direct Line secret (keep secret private)
+TOKEN_MODE=proxy
+
+# If TOKEN_MODE=proxy
+PROXY_TOKEN_ENDPOINT=https://afa-communications-hub-e7e2f2fwesa3hqev.uksouth-01.azurewebsites.net/api/GenerateDirectLineToken
+# If your proxy endpoint requires a function key or auth, add it via:
+# PROXY_AUTH_HEADER_NAME=x-functions-key
+# PROXY_AUTH_HEADER_VALUE=YOUR_FUNCTION_KEY
+
+# If TOKEN_MODE=directline_secret
+DIRECTLINE_SECRET=
+
+# Server
+PORT=3000
