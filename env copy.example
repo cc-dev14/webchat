@@ -4,7 +4,7 @@
 TOKEN_MODE=proxy
 
 # If TOKEN_MODE=proxy
-PROXY_TOKEN_ENDPOINT=https://afa-communications-hub-e7e2f2fwesa3hqev.uksouth-01.azurewebsites.net/api/GenerateDirectLineToken
+PROXY_TOKEN_ENDPOINT=YOUR_ENDPOINT
 # If your proxy endpoint requires a function key or auth, add it via:
 # PROXY_AUTH_HEADER_NAME=x-functions-key
 # PROXY_AUTH_HEADER_VALUE=YOUR_FUNCTION_KEY
