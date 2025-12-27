@@ -25,8 +25,10 @@ function setOpen(isOpen) {
   fab.setAttribute("aria-expanded", String(isOpen));
 
   if (isOpen) {
+    fab.classList.add("is-hidden");   // 🔑 hide FAB
     fab.setAttribute("aria-label", "Close chat");
   } else {
+    fab.classList.remove("is-hidden"); // 🔑 show FAB
     fab.setAttribute("aria-label", "Open chat");
   }
 }
@@ -108,11 +110,11 @@ fab.addEventListener("click", toggleChat);
 closeBtn.addEventListener("click", () => setOpen(false));
 
 // Close with ESC
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && panel.getAttribute("aria-hidden") === "false") {
-    setOpen(false);
-  }
-});
+// window.addEventListener("keydown", (e) => {
+//   if (e.key === "Escape" && panel.getAttribute("aria-hidden") === "false") {
+//     setOpen(false);
+//   }
+// });
 
 // Start closed
 setOpen(false);
