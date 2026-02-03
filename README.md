@@ -28,8 +28,8 @@ The Web Chat UI is loaded on demand when the user clicks a chat icon, instead of
 
 ---
 
-## CORS & Origin rules
-The web page calls a token endpoint from the browser. You will need to add your website origins. Please email contact@fuzzlab.co.uk for any enquiries.
+## Security
+The web page generates an access token generation, by calling an endpoint from the browser. Please email contact@fuzzlab.co.uk to request access to the token generator.
 
 ---
 ## Add HTML to Your Page
