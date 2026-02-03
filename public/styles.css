@@ -31,19 +31,28 @@
 /* =========================================================
    PAGE (not important for the widget)
    ========================================================= */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--page-bg);
   color: var(--text);
 }
+
 .page {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 16px 120px;
 }
+
 .demo-card {
   margin-top: 24px;
   border: 1px solid var(--panel-border);
@@ -107,7 +116,7 @@ body {
    FAB pulse background (non-intrusive)
    ========================================================= */
 .fab {
-  position: fixed; 
+  position: fixed;
   overflow: visible;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -124,31 +133,33 @@ body {
   transform: scale(1);
   animation: fab-pulse 2.6s ease-out infinite;
 
-  z-index: -1; /* sits behind button + logo */
+  z-index: -1;
+  /* sits behind button + logo */
 }
 
 /* =========================================================
    FAB pulse ring 
    ========================================================= */
-  .fab::after {
-    content: "";
-    position: absolute;
-    inset: -6px;               /* expands beyond pill */
-    border-radius: 999px;
+.fab::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  /* expands beyond pill */
+  border-radius: 999px;
 
-    border: 2px solid var(--fab-bg);
-    opacity: 0.6;
+  border: 2px solid var(--fab-bg);
+  opacity: 0.6;
 
-    animation: fab-pulse-ring 2.4s ease-out infinite;
-    pointer-events: none;
-  }
+  animation: fab-pulse-ring 2.4s ease-out infinite;
+  pointer-events: none;
+}
 
-  /* Hide FAB when chat is open */
-  .fab.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.9);
-  }
+/* Hide FAB when chat is open */
+.fab.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
 
 
 /* =========================================================
@@ -157,13 +168,15 @@ body {
 .panel {
   position: fixed;
   right: var(--safe-gap);
-  bottom: calc(var(--safe-gap) + 64px); /* leave space above the FAB */
+  bottom: calc(var(--safe-gap) + 64px);
+  /* leave space above the FAB */
   z-index: 9998;
 
   width: var(--panel-width);
   height: var(--panel-height);
 
-  display: none; /* toggled by JS */
+  display: none;
+  /* toggled by JS */
   flex-direction: column;
 
   background: var(--panel-bg);
@@ -183,7 +196,7 @@ body {
   justify-content: space-between;
   padding: 12px 12px;
   border-bottom: 1px solid var(--panel-border);
-  background: linear-gradient(90deg, rgba(255,49,88,0.08), rgba(255,187,51,0.10));
+  background: linear-gradient(90deg, rgba(255, 49, 88, 0.08), rgba(255, 187, 51, 0.10));
 }
 
 /* Panel avatar brand logo */
@@ -209,10 +222,12 @@ body {
     transform: scale(1);
     opacity: 0.6;
   }
+
   70% {
     transform: scale(1.35);
     opacity: 0;
   }
+
   100% {
     opacity: 0;
   }
@@ -261,7 +276,8 @@ body {
 
 .panel-body {
   flex: 1;
-  min-height: 0; /* required for proper flex scrolling */
+  min-height: 0;
+  /* required for proper flex scrolling */
 }
 
 .panel-footer {
@@ -271,33 +287,36 @@ body {
   background: #fcfcfc;
 }
 
-  /* =========================================================
+/* =========================================================
     MOBILE tweaks
     ========================================================= */
-  @media (max-width: 480px) {
-    :root {
-      --safe-gap: 12px;
-      --panel-width: calc(100vw - 24px);
-      --panel-height: calc(100vh - 24px);
-    }
+@media (max-width: 480px) {
+  :root {
+    --safe-gap: 12px;
+    --panel-width: calc(100vw - 24px);
+    --panel-height: calc(100vh - 24px);
+  }
 
-    .panel {
-      bottom: var(--safe-gap);
-    }
+  .panel {
+    bottom: var(--safe-gap);
+  }
 
-    .fab-label {
-      display: none; /* icon-only on small screens */
-    }
+  .fab-label {
+    display: none;
+    /* icon-only on small screens */
+  }
 
-    @keyframes fab-pulse {
+  @keyframes fab-pulse {
     0% {
       transform: scale(1);
       opacity: 0.45;
     }
+
     70% {
       transform: scale(1.5);
       opacity: 0;
     }
+
     100% {
       opacity: 0;
     }

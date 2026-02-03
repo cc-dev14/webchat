@@ -1,11 +1,11 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Bot</title>
   <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-  <title>Direct Line Web Chat FAB Demo</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -13,7 +13,8 @@
   <main class="page">
     <h1>Direct Line Web Chat (FAB) – Theming Playground</h1>
     <p>
-      This page demonstrates an embedded Bot Framework Web Chat experience that opens from a Floating Action Button.
+      This page demonstrates an embedded Bot Framework Web Chat experience that opens from a Floating Action
+      Button.
       Use this repo as a reference implementation for your web developers.
     </p>
 
@@ -26,19 +27,17 @@
       </ol>
     </section>
   </main>
-
   <!-- FAB -->
   <button id="chat-fab" class="fab" type="button" aria-label="Open chat">
-    <img src="/images/brand-logo.png" alt="" aria-hidden="true" class="fab-icon-img" />
+    <img src="/public/images/brand-logo.png" alt="" aria-hidden="true" class="fab-icon-img" />
     <!-- <span class="fab-label">Chat</span> -->
   </button>
-
   <!-- Panel -->
   <aside id="chat-panel" class="panel" aria-hidden="true">
     <header class="panel-header">
       <div class="panel-title">
         <div class="panel-avatar" aria-hidden="true">
-          <img src="/images/brand-logo.png" alt="" class="panel-avatar-img" />
+          <img src="/public/images/brand-logo.png" alt="" class="panel-avatar-img" />
         </div>
         <div>
           <div class="panel-name">Fuzzlab</div>
@@ -50,21 +49,7 @@
 
     <div id="webchat" class="panel-body" role="region" aria-label="Chat messages"></div>
 
-    <footer class="panel-footer">
-      <small>
-        Demo only. Don’t put secrets in the browser.
-      </small>
-    </footer>
-  </aside>
-
-  <!-- Optional: client config. Copy config.example.js to config.js and include it here if you want. -->
-  <!-- <script src="./config.js"></script> -->
-
-  <!-- Web Chat (Direct Line) - CDN -->
-  <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-
-  <!-- App -->
-  <script type="module" src="./app.js"></script>
+    <script type="module" src="./index.js"></script>
 </body>
 
 </html>
