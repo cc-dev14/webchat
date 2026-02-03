@@ -60,7 +60,7 @@ Add this once per page, before your custom JavaScript file:
 
 ## Theming playground
 
-Edit **`public/styles.css`**. The main knobs are CSS variables:
+Edit **`styles.css`**. The main knobs are CSS variables:
 
 - `--fab-bg`, `--fab-fg`
 - `--panel-bg`, `--panel-border`
