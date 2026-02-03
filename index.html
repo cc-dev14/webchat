@@ -27,29 +27,14 @@
       </ol>
     </section>
   </main>
-  <!-- FAB -->
-  <button id="chat-fab" class="fab" type="button" aria-label="Open chat">
-    <img src="/public/images/brand-logo.png" alt="" aria-hidden="true" class="fab-icon-img" />
-    <!-- <span class="fab-label">Chat</span> -->
-  </button>
-  <!-- Panel -->
-  <aside id="chat-panel" class="panel" aria-hidden="true">
-    <header class="panel-header">
-      <div class="panel-title">
-        <div class="panel-avatar" aria-hidden="true">
-          <img src="/public/images/brand-logo.png" alt="" class="panel-avatar-img" />
-        </div>
-        <div>
-          <div class="panel-name">Fuzzlab</div>
-          <div class="panel-subtitle">Always here for you</div>
-        </div>
-      </div>
-      <button id="chat-close" class="panel-close" type="button" aria-label="Close chat">✕</button>
-    </header>
+  <script src="./index.js"></script>
+  <script>
+    ClientWebchat.init({
+      tenantId: "client-name",
+      webchatKey: "client-public",
+    });
+  </script>
 
-    <div id="webchat" class="panel-body" role="region" aria-label="Chat messages"></div>
-
-    <script type="module" src="./index.js"></script>
 </body>
 
 </html>

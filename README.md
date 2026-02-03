@@ -1,8 +1,17 @@
 # Direct Line Web Chat FAB Demo (Theming Playground)
+A lightweight, embeddable JavaScript webchat widget for integrating Fuzzlab conversational experiences into websites.
 
-This project demonstrates how to integrate Azure Bot Web Chat into a custom HTML page using Direct Line, with an Azure Function App responsible for securely generating Direct Line tokens.
+Designed for **public-sector and regulated environments**, with explicit tenant scoping, origin controls, and a simple drop-in setup.
+---
 
-The Web Chat UI is loaded on demand when the user clicks a chat icon, instead of loading automatically on page load.
+## Features
+
+- Simple, framework-agnostic JavaScript embed
+- Tenant-scoped configuration
+- Secure Direct Line token generation
+- Origin-restricted API access (CORS + server validation)
+- No secrets exposed to the browser
+- Suitable for production use in controlled environments
 
 ---
 ## Integration Overview
@@ -80,3 +89,8 @@ You can also restyle:
 - `index.js` – Web Chat boot + open/close logic
 - `styles.css` – theming playground 
 - `public/images/brand-logo.png` – icon for the webchat
+
+## License
+
+Internal / client use.  
+Contact Fuzzlab for commercial usage and support.
