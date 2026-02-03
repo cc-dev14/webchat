@@ -2,6 +2,7 @@
 A lightweight, embeddable JavaScript webchat widget for integrating Fuzzlab conversational experiences into websites.
 
 Designed for **public-sector and regulated environments**, with explicit tenant scoping, origin controls, and a simple drop-in setup.
+
 ---
 
 ## Features
@@ -14,81 +15,115 @@ Designed for **public-sector and regulated environments**, with explicit tenant 
 - Suitable for production use in controlled environments
 
 ---
-## Integration Overview
 
-**HTML**
-  - Chat button markup
-  - Bot Web Chat import script
-  - Reference to the JavaScript file
+## Quick Start
 
-**JavaScript**
-  - Fetching a Direct Line token
-  - Initialising Web Chat
-  - Opening and closing the chat window
+### 1. Include the script
 
-**CSS**
-  - Displays or hides chat
+```html
+<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+```
 
-## How It Works
-1. User clicks the Chat button on the website
-2. JavaScript calls an Azure Function to request a Direct Line token
-3. The token is returned securely
-4. Bot Web Chat is initialised and displayed
+### 2. Initialise the widget
+
+```html
+<script>
+  ClientWebchat.init({
+    tenantId: "fuzzlab",
+    webchatKey: "fuzzlab-public"
+  });
+</script>
+```
+
+---
+## Configuration Options
+
+| Option | Required | Description |
+|------|--------|------------|
+| `tenantId` | ✅ | Tenant identifier (e.g. `fuzzlab`) |
+| `webchatKey` | ✅ | Public, non-secret widget identifier |
+
+> **Important**  
+> `webchatKey` is **not a secret**. It is used to identify and manage widget usage, not for authentication.
+
+---
+## How Security Works
+
+This widget uses a **layered security model**, appropriate for public web embeds.
+
+### Browser layer
+
+- Requests are restricted using **CORS allow-listing**
+- Only approved customer domains can call the API
+---
+### Application layer
+
+Each request includes explicit tenant intent via headers:
+
+```http
+X-Tenant-ID: fuzzlab
+X-Webchat-Key: fuzzlab-public
+```
+
+The backend validates:
+- Tenant existence
+- Widget key association
+- Allowed origins for that tenant
+- Request eligibility before issuing a Direct Line token
+
+### Token handling
+
+- Tokens are short-lived
+- Generated server-side only
+- Never cached or persisted in the browser
+
+No authentication credentials or secrets are exposed to the client.
 
 ---
 
-## CORS & Origin rules
-The web page calls a token endpoint from the browser. You will need to add your website origins. Please email contact@fuzzlab.co.uk for any enquiries.
+## Backend Requirements
 
----
-## Add HTML to Your Page
+The backend must expose the following endpoint:
 
-**Bot Web Chat Import (Required)**
-
-Add this once per page, before your custom JavaScript file:
-```
-<script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+```http
+GET /api/fuzzlab/directline-token
 ```
 
-**Chat Button Container**
-```
-<button id="chat-fab" class="fab" type="button" aria-label="Open chat">
-  <img src="/public/images/brand-logo.png" alt="" aria-hidden="true" class="fab-icon-img" />
-</button>
+Expected request headers:
 
-<div id="webchat" class="panel-body" role="region" aria-label="Chat messages"></div>
+```http
+X-Tenant-ID
+X-Webchat-Key
 ```
 
+The endpoint returns a standard Direct Line token response:
 
-
-**Web Chat Integration Script**
-```
-<script type="module" src="./index.js"></script>
+```json
+{
+  "token": "string",
+  "expires_in": 1800
+}
 ```
 ---
 
-## Theming playground
+## Production Readiness
 
-Edit **`styles.css`**. The main knobs are CSS variables:
+This implementation is suitable for:
 
-- `--fab-bg`, `--fab-fg`
-- `--panel-bg`, `--panel-border`
-- `--brand`, `--brand-2`
-- `--radius`, `--shadow`
+- Live customer deployments
+- Local authorities and housing providers
+- Regulated and compliance-aware environments
 
-You can also restyle:
-- FAB size + position
-- Panel width/height
-- Header layout
+Additional hardening (rate limiting, telemetry) can be applied at the API layer without changes to the widget.
+
+## Notes
+
+- This widget is intentionally **build-step free**
+- All configuration is runtime-based
+- No framework or bundler is required
+- Designed to be easily embedded in CMSs and static sites
 
 ---
-
-## Files
-
-- `index.html` – page shell + FAB + panel
-- `index.js` – Web Chat boot + open/close logic
-- `styles.css` – theming playground 
-- `public/images/brand-logo.png` – icon for the webchat
 
 ## License
 
