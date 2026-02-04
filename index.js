@@ -7,7 +7,7 @@ window.ClientWebchat = {
   directLineInstances: {},
   hasStarted: false,
 
-  init: async function ({ tenantId, origin }) {
+  init: async function ({ tenantId }) {
     const clientName = capitalizeFirstLetter(tenantId);
     // Creates widget icon at bottom right
     const fab = document.createElement('button');
@@ -97,7 +97,7 @@ window.ClientWebchat = {
       setOpen(next);
 
       if (next) {
-        this.startWebChat(tenantId, origin).catch((err) => {
+        this.startWebChat(tenantId).catch((err) => {
           console.error(err);
           this.hasStarted = false;
           alert("Could not start chat. Check the token endpoint and server logs.");
@@ -114,14 +114,13 @@ window.ClientWebchat = {
 
   },
 
-  getDirectLineToken: async function (tenantId, origin) {
+  getDirectLineToken: async function (tenantId) {
     const res = await fetch(
       `${tokenEndpoint}?tenant=${tenantId}`,
       {
         method: "GET",
         headers: {
-          'X-Tenant-ID': tenantId,
-          'Origin': origin
+          'X-Tenant-ID': tenantId
         }
       },
     );
@@ -134,12 +133,12 @@ window.ClientWebchat = {
     return response;
   },
 
-  startWebChat: async function (tenantId, origin) {
+  startWebChat: async function (tenantId) {
     const webchatHost = document.getElementById("webchat");
     if (this.hasStarted) return;
     this.hasStarted = true;
 
-    const { conversationId, token } = await this.getDirectLineToken(tenantId, origin);
+    const { conversationId, token } = await this.getDirectLineToken(tenantId);
 
     const directLine = window.WebChat.createDirectLine({
       domain: "https://europe.directline.botframework.com/v3/directline",

@@ -29,8 +29,7 @@ Designed for **public-sector and regulated environments**, with explicit tenant 
 ```html
 <script>
   ClientWebchat.init({
-    tenantId: "fuzzlab",
-    origin: "https://fuzzlab.co.uk"
+    tenantId: "fuzzlab"
   });
 </script>
 ```
@@ -43,6 +42,8 @@ Designed for **public-sector and regulated environments**, with explicit tenant 
 | `tenantId` | ✅ | Tenant identifier (e.g. `fuzzlab`) |
 | `origin` | ✅ | Tenant website URL |
 
+> **Important**  
+> `origin` is **automatically sent**. Please send an email to contact@fuzzlab.co.uk to add your website URL to the allowed origins list for the API.
 ---
 ## How Security Works
 
