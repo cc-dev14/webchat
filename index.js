@@ -1,15 +1,14 @@
 
 const brandLogoUrl = "/public/images/brand-logo.png";
-const clientName = "Client";
 const clientSubtitle = "Always here for you";
 const tokenEndpoint = "https://afa-token-machine-exhxbxdnhhgve9e3.uksouth-01.azurewebsites.net/api/fuzzlab/directline-token";
-const tokenClient = "KARIBU_FOUNDRY";
 
 window.ClientWebchat = {
   directLineInstances: {},
   hasStarted: false,
 
-  init: async function ({ tenantId, webchatKey }) {
+  init: async function ({ tenantId, origin }) {
+    const clientName = capitalizeFirstLetter(tenantId);
     // Creates widget icon at bottom right
     const fab = document.createElement('button');
     fab.id = 'chat-fab';
@@ -98,7 +97,7 @@ window.ClientWebchat = {
       setOpen(next);
 
       if (next) {
-        this.startWebChat(tenantId, webchatKey).catch((err) => {
+        this.startWebChat(tenantId, origin).catch((err) => {
           console.error(err);
           this.hasStarted = false;
           alert("Could not start chat. Check the token endpoint and server logs.");
@@ -115,14 +114,14 @@ window.ClientWebchat = {
 
   },
 
-  getDirectLineToken: async function (tenantId, webchatKey) {
+  getDirectLineToken: async function (tenantId, origin) {
     const res = await fetch(
-      `${tokenEndpoint}?tenant=${tokenClient}`,
+      `${tokenEndpoint}?tenant=${tenantId}`,
       {
         method: "GET",
         headers: {
           'X-Tenant-ID': tenantId,
-          'X-Webchat-Key': webchatKey
+          'Origin': origin
         }
       },
     );
@@ -135,12 +134,12 @@ window.ClientWebchat = {
     return response;
   },
 
-  startWebChat: async function (tenantId, webchatKey) {
+  startWebChat: async function (tenantId, origin) {
     const webchatHost = document.getElementById("webchat");
     if (this.hasStarted) return;
     this.hasStarted = true;
 
-    const { conversationId, token } = await this.getDirectLineToken(tenantId, webchatKey);
+    const { conversationId, token } = await this.getDirectLineToken(tenantId, origin);
 
     const directLine = window.WebChat.createDirectLine({
       domain: "https://europe.directline.botframework.com/v3/directline",
@@ -155,4 +154,8 @@ window.ClientWebchat = {
       webchatHost
     );
   }
+}
+
+function capitalizeFirstLetter(str) {
+  return str[0].toUpperCase() + str.slice(1);
 }

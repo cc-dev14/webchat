@@ -30,7 +30,7 @@ Designed for **public-sector and regulated environments**, with explicit tenant 
 <script>
   ClientWebchat.init({
     tenantId: "fuzzlab",
-    webchatKey: "fuzzlab-public"
+    origin: "https://fuzzlab.co.uk"
   });
 </script>
 ```
@@ -41,10 +41,7 @@ Designed for **public-sector and regulated environments**, with explicit tenant 
 | Option | Required | Description |
 |------|--------|------------|
 | `tenantId` | ✅ | Tenant identifier (e.g. `fuzzlab`) |
-| `webchatKey` | ✅ | Public, non-secret widget identifier |
-
-> **Important**  
-> `webchatKey` is **not a secret**. It is used to identify and manage widget usage, not for authentication.
+| `origin` | ✅ | Tenant website URL |
 
 ---
 ## How Security Works
@@ -62,7 +59,7 @@ Each request includes explicit tenant intent via headers:
 
 ```http
 X-Tenant-ID: fuzzlab
-X-Webchat-Key: fuzzlab-public
+Origin: https://www.fuzzlab.co.uk
 ```
 
 The backend validates:
@@ -93,7 +90,7 @@ Expected request headers:
 
 ```http
 X-Tenant-ID
-X-Webchat-Key
+Origin
 ```
 
 The endpoint returns a standard Direct Line token response:
